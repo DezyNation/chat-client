@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.1",
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "emoji-mart": "^5.5.2",
     "framer-motion": "^10.16.4",
     "next": "13.5.4",
     "react": "^18",

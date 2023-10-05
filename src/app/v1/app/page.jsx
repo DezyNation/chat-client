@@ -8,7 +8,7 @@ const ChatApp = () => {
 
   return (
     <>
-    <HStack w={'full'} h={'100vh'} overflow={'hidden'} alignItems={'flex-start'}>
+    <HStack w={'full'} h={'100vh'} overflow={'hidden'} alignItems={'flex-start'} gap={0}>
       <LeftPanel />
       <ChatWindow />
     </HStack>
