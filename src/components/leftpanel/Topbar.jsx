@@ -21,7 +21,7 @@ const Topbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <HStack gap={4}>
+      <HStack gap={4} p={2}>
         <Menu>
           <MenuButton
             as={IconButton}

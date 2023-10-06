@@ -17,6 +17,7 @@ import NavbarIconsGroup from "../misc/chat/NavbarIconsGroup";
 import CustomEmojiPicker from "../misc/chat/CustomEmojiPicker";
 import { BsMicFill } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
+import ResizeTextarea from "react-textarea-autosize";
 
 const ChatWindow = () => {
   const { colorMode } = useColorMode();
@@ -33,9 +34,16 @@ const ChatWindow = () => {
     }
   }, [message]);
 
+  const handleTextareaResize = (event) => {
+    const textarea = event.target;
+    textarea.style.maxHeight = "auto"; // Reset the height to auto to recalculate
+    textarea.style.maxHeight = `${Math.min(textarea.scrollHeight, 256)}px`; // Set the new height
+  };
+
   return (
     <>
       <Box
+        pos={"relative"}
         flex={3}
         w={"full"}
         h={"full"}
@@ -70,12 +78,20 @@ const ChatWindow = () => {
         {/* Chats container */}
         <Box w={"full"} height={"80%"}></Box>
 
-        <HStack p={2} alignItems={"center"} justifyContent={"center"}>
+        <HStack
+          position={"absolute"}
+          w={"full"}
+          bottom={0}
+          p={4}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
           <HStack
             p={2}
             rounded={12}
             bgColor={colorMode == "dark" ? "#1a202c" : "#fff"}
             roundedBottomRight={0}
+            alignItems={"flex-end"}
           >
             <CustomEmojiPicker
               onClick={() => setEmojiPickerStatus(true)}
@@ -85,21 +101,31 @@ const ChatWindow = () => {
                 setMessage(`${message}${emojiData?.native}`)
               }
             />
-            <Input
+            <Textarea
               w={["full", "lg"]}
-              noOfLines={999999999}
+              resize={"none"}
               border={"none"}
-              variant={'unstyled'}
+              minH={'unset'}
+              variant={"unstyled"}
               placeholder="Message"
-              _placeholder={{fontWeight: 'medium', color: 'whiteAlpha.800'}}
+              _placeholder={{ fontWeight: "medium", color: "whiteAlpha.800" }}
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+
+              minRows={1}
+              maxRows={20}
+              as={ResizeTextarea}
+              transition={"all 0.3s ease"}
             />
           </HStack>
           <IconButton
             rounded={"full"}
             size={"lg"}
-            colorScheme="yellow"
-            bgColor={colorMode == "dark" ? 'orange.500' : '#333'}
-            color={'#FFF'}
+            colorScheme="orange"
+            bgColor={colorMode == "dark" ? "orange.500" : "#333"}
+            color={"#FFF"}
             transition={"all .3s ease"}
             fontSize={20}
             icon={intent == "audio" ? <BsMicFill /> : <IoSend />}

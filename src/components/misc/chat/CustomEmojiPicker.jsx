@@ -9,6 +9,7 @@ import {
   PopoverTrigger,
 } from "@chakra-ui/react";
 import { LuSmilePlus } from "react-icons/lu";
+import appleData from '@emoji-mart/data/sets/14/apple.json'
 
 const CustomEmojiPicker = ({ onEmojiSelect, onClose, onClick, isOpen }) => {
   return (

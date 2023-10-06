@@ -9,7 +9,7 @@ const RecentChatsContainer = () => {
   const { colorMode } = useColorMode();
   return (
     <>
-      <VStack py={2} w={"full"} h={"full"} overflowY={"scroll"}>
+      <VStack p={2} w={"full"} h={"full"} overflowY={"scroll"}>
         <Box w={"full"} p={3} rounded={8}>
           <AvatarContainer
             src={"/test/lotusfeet.jpeg"}

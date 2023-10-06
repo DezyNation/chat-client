@@ -22,7 +22,7 @@ const LeftPanel = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box flex={1} p={2} borderWidth={'0.5px'} borderColor={colorMode == "dark" ? 'gray.700' : 'gray.200'} h={'full'}>
+      <Box flex={1} borderWidth={'0.5px'} borderColor={colorMode == "dark" ? 'gray.700' : 'gray.200'} h={'full'}>
         <TopBar />
         <RecentChatsContainer />
       </Box>
