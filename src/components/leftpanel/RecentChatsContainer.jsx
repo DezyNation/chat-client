@@ -33,10 +33,14 @@ const RecentChatsContainer = () => {
             src={"/logo.jpeg"}
             title={"ISKCON,Inc. Sanga"}
             titleSize={"14px"}
-            titleIcons={[<HiBadgeCheck size={16} />, <BsVolumeMuteFill />]}
+            titleIcons={[
+              <HiBadgeCheck size={16} color={"#FFF"} />,
+              <BsVolumeMuteFill color={"#FFF"} />,
+            ]}
             content={
               "**Raga manjari devi dasi_ACBSP:** Happy Krishna Conscious Night"
             }
+            titleColor={"#fff"}
             contentColor={"#fff"}
             time={"01:52"}
           />

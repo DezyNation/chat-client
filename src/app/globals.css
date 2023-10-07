@@ -37,9 +37,3 @@
   ::-webkit-scrollbar {
     display: none;
   }
-
-  /* Optional: Show scrollbars when the element is being hovered (Chrome, Safari) */
-  /* Customize as needed */
-  :hover::-webkit-scrollbar {
-    display: block;
-  }
