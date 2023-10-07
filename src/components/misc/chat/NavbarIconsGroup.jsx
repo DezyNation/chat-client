@@ -20,20 +20,20 @@ import {
 } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 
-const NavbarIconsGroup = ({ onClick }) => {
+const NavbarIconsGroup = ({ onSearchClick, onPinClick }) => {
   const { colorMode } = useColorMode();
 
   return (
     <>
       <HStack gap={2}>
         <IconButton
-          onClick={() => onClick("pinned")}
+          onClick={() => onPinClick()}
           bgColor={"transparent"}
           icon={<BsPinAngle size={20} />}
           rounded={"full"}
         />
         <IconButton
-          onClick={() => onClick("search")}
+          onClick={() => onSearchClick()}
           bgColor={"transparent"}
           icon={<FiSearch size={20} />}
           rounded={"full"}

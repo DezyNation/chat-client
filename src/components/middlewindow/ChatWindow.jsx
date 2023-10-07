@@ -20,13 +20,12 @@ import { IoSend } from "react-icons/io5";
 import { ImAttachment } from "react-icons/im";
 import ResizeTextarea from "react-textarea-autosize";
 
-const ChatWindow = ({onAvatarClick}) => {
+const ChatWindow = ({ onAvatarClick }) => {
   const { colorMode } = useColorMode();
   const [emojiPickerStatus, setEmojiPickerStatus] = useState(false);
   const [message, setMessage] = useState("");
 
   const [intent, setIntent] = useState("audio");
-  const [navBtnClick, setNavBtnClick] = useState("")
 
   useEffect(() => {
     if (message) {
@@ -35,12 +34,6 @@ const ChatWindow = ({onAvatarClick}) => {
       setIntent("audio");
     }
   }, [message]);
-
-  const handleTextareaResize = (event) => {
-    const textarea = event.target;
-    textarea.style.maxHeight = "auto"; // Reset the height to auto to recalculate
-    textarea.style.maxHeight = `${Math.min(textarea.scrollHeight, 256)}px`; // Set the new height
-  };
 
   return (
     <>
@@ -71,11 +64,14 @@ const ChatWindow = ({onAvatarClick}) => {
               name={"ISKCON,Inc. Sanga"}
               content={"1984 Members"}
               contentColor={colorMode == "dark" ? "#fff" : "gray.500"}
-              onClick={()=>onAvatarClick()}
+              onClick={() => onAvatarClick()}
             />
             <Spacer />
             <PinnedChats />
-            <NavbarIconsGroup />
+            <NavbarIconsGroup
+              onSearchClick={() => console.log("Search")}
+              onPinClick={() => console.log("Pin")}
+            />
           </HStack>
         </Box>
 
@@ -109,7 +105,7 @@ const ChatWindow = ({onAvatarClick}) => {
               w={["full", "lg"]}
               resize={"none"}
               border={"none"}
-              minH={'unset'}
+              minH={"unset"}
               variant={"unstyled"}
               placeholder="Message"
               _placeholder={{ fontWeight: "medium", color: "whiteAlpha.800" }}
@@ -117,13 +113,16 @@ const ChatWindow = ({onAvatarClick}) => {
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-
               minRows={1}
               maxRows={20}
               as={ResizeTextarea}
               transition={"all 0.3s ease"}
             />
-            <IconButton rounded={'full'} bgColor={'transparent'} icon={<ImAttachment />} />
+            <IconButton
+              rounded={"full"}
+              bgColor={"transparent"}
+              icon={<ImAttachment />}
+            />
           </HStack>
           <IconButton
             rounded={"full"}
@@ -131,7 +130,6 @@ const ChatWindow = ({onAvatarClick}) => {
             colorScheme="orange"
             bgColor={colorMode == "dark" ? "orange.500" : "#333"}
             color={"#FFF"}
-            transition={"all .3s ease"}
             fontSize={20}
             icon={intent == "audio" ? <BsMicFill /> : <IoSend />}
           />
