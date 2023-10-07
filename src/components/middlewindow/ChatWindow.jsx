@@ -17,6 +17,7 @@ import NavbarIconsGroup from "../misc/chat/NavbarIconsGroup";
 import CustomEmojiPicker from "../misc/chat/CustomEmojiPicker";
 import { BsMicFill } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
+import { ImAttachment } from "react-icons/im";
 import ResizeTextarea from "react-textarea-autosize";
 
 const ChatWindow = () => {
@@ -119,6 +120,7 @@ const ChatWindow = () => {
               as={ResizeTextarea}
               transition={"all 0.3s ease"}
             />
+            <IconButton rounded={'full'} bgColor={'transparent'} icon={<ImAttachment />} />
           </HStack>
           <IconButton
             rounded={"full"}
