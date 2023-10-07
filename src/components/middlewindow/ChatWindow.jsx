@@ -20,12 +20,13 @@ import { IoSend } from "react-icons/io5";
 import { ImAttachment } from "react-icons/im";
 import ResizeTextarea from "react-textarea-autosize";
 
-const ChatWindow = () => {
+const ChatWindow = ({onAvatarClick}) => {
   const { colorMode } = useColorMode();
   const [emojiPickerStatus, setEmojiPickerStatus] = useState(false);
   const [message, setMessage] = useState("");
 
   const [intent, setIntent] = useState("audio");
+  const [navBtnClick, setNavBtnClick] = useState("")
 
   useEffect(() => {
     if (message) {
@@ -45,7 +46,8 @@ const ChatWindow = () => {
     <>
       <Box
         pos={"relative"}
-        flex={3}
+        flex={2}
+        flexGrow={3}
         w={"full"}
         h={"full"}
         bgImage={
@@ -66,9 +68,10 @@ const ChatWindow = () => {
             <AvatarContainer
               src={"/logo.jpeg"}
               avatarSize={"40px"}
-              title={"ISKCON,Inc. Sanga"}
+              name={"ISKCON,Inc. Sanga"}
               content={"1984 Members"}
               contentColor={colorMode == "dark" ? "#fff" : "gray.500"}
+              onClick={()=>onAvatarClick()}
             />
             <Spacer />
             <PinnedChats />

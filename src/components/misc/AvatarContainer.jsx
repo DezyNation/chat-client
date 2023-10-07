@@ -1,12 +1,19 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
-import { Avatar, HStack, Box, Text, VStack, useColorMode } from "@chakra-ui/react";
+import {
+  Avatar,
+  HStack,
+  Box,
+  Text,
+  VStack,
+  useColorMode,
+} from "@chakra-ui/react";
 
 const AvatarContainer = ({
   avatarSize,
   src,
-  title,
+  name,
   titleSize,
   titleIcons,
   titleColor,
@@ -15,8 +22,9 @@ const AvatarContainer = ({
   time,
   badge,
   badgeColor,
+  onClick
 }) => {
-  const {colorMode} = useColorMode()
+  const { colorMode } = useColorMode();
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -25,24 +33,32 @@ const AvatarContainer = ({
 
   return (
     <>
-      <HStack w={"full"} gap={2} cursor={"pointer"}>
-        <Avatar boxSize={avatarSize || "48px"} src={src} name={title} />
+      <HStack w={'full'} gap={2} cursor={"pointer"} onClick={()=>onClick()}>
+        <Avatar boxSize={avatarSize || "48px"} src={src} name={name} />
         <Box w={"full"}>
           <HStack>
-            <Text fontWeight={"semibold"} fontSize={titleSize || "sm"} color={colorMode == "dark" ? "#FFF" : titleColor || "#111"}>
-              {title?.length > 26 ? title?.slice(0, 26) + "..." : title}
+            <Text
+              fontWeight={"semibold"}
+              fontSize={titleSize || "sm"}
+              color={colorMode == "dark" ? "#FFF" : titleColor || "#111"}
+            >
+              {name?.length > 26 ? name?.slice(0, 26) + "..." : name}
             </Text>
             {titleIcons?.length ? titleIcons?.map((icon) => icon) : ""}
           </HStack>
 
           <Box
-          maxW={['80vw', '16vw']}
+            maxW={["80vw", "16vw"]}
             fontSize={"xs"}
             color={contentColor || "whiteAlpha.700"}
+            overflow={"hidden"}
+            whiteSpace="nowrap" // this is not working for some reason...
+            textOverflow={"ellipsis"}
           >
             {isClient ? (
               <Text isTruncated noOfLines={1}>
-                <Markdown>{content}</Markdown>{content?.length > 20 ? "..." : ""}
+                <Markdown>{content}</Markdown>
+                {content?.length > 20 ? "..." : ""}
               </Text>
             ) : null}
           </Box>

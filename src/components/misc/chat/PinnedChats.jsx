@@ -5,7 +5,7 @@ import { Box, HStack, IconButton, Text, VStack } from "@chakra-ui/react";
 const PinnedChats = () => {
   return (
     <>
-      <HStack w={["50%", "30%"]} gap={4} cursor={'pointer'}>
+      <HStack w={["50%", "xs"]} gap={4} cursor={'pointer'}>
         <Box>
           <Text fontWeight={"semibold"} fontSize={"sm"} color={"twitter.500"}>
             Pinned Message #108

@@ -1,3 +1,7 @@
+*{
+  scroll-behavior: smooth;
+}
+
 /* For WebKit-based browsers (Chrome, Safari) */
 /* You can customize the scrollbar colors and dimensions */
 ::-webkit-scrollbar {

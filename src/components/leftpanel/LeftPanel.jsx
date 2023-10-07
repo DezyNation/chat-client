@@ -19,7 +19,7 @@ import RecentChatsContainer from '@/components/leftpanel/RecentChatsContainer'
 import TopBar from '../leftpanel/Topbar'
 
 const LeftPanel = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
   return (
     <>
       <Box flex={1} borderWidth={'0.5px'} borderColor={colorMode == "dark" ? 'gray.700' : 'gray.200'} h={'full'}>

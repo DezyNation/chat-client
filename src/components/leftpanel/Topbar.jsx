@@ -9,6 +9,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Spacer,
   Switch,
   Text,
   useColorMode,
@@ -16,23 +17,39 @@ import {
 import React from "react";
 import { FiMenu } from "react-icons/fi";
 import { BiSearch } from "react-icons/bi";
+import { BsBugFill, BsMoonStarsFill, BsSunFill } from "react-icons/bs";
+import { PiGearSixFill } from "react-icons/pi";
+import { HiMiniUserGroup } from "react-icons/hi2";
 
 const Topbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
       <HStack gap={4} p={2}>
-        <Menu>
+        <Menu closeOnSelect={false}>
           <MenuButton
             as={IconButton}
             icon={<FiMenu />}
             rounded={"full"}
             bgColor={"transparent"}
           ></MenuButton>
-          <MenuList filter={"auto"} backdropBlur={"5px"}>
-            <MenuItem>
-              <HStack w={"full"} justifyContent={"space-between"}>
+          <MenuList
+            bgColor={colorMode == "dark" ? "blackAlpha.600" : "whiteAlpha.600"}
+            filter={"auto"}
+            backdropFilter={'blur(10px)'}
+          >
+            <MenuItem
+              bgColor={"transparent"}
+              _hover={{
+                bgColor:
+                  colorMode == "dark" ? "whiteAlpha.200" : "blackAlpha.200",
+              }}
+              onClick={() => toggleColorMode()}
+            >
+              <HStack w={"full"}>
+                {colorMode == "dark" ? <BsMoonStarsFill /> : <BsSunFill />}
                 <Text fontSize={"sm"}>Dark Theme</Text>
+                <Spacer />
                 <Switch
                   size={"sm"}
                   isChecked={colorMode === "dark"}
@@ -40,6 +57,47 @@ const Topbar = () => {
                 />
               </HStack>
             </MenuItem>
+
+            <MenuItem
+              bgColor={"transparent"}
+              _hover={{
+                bgColor:
+                  colorMode == "dark" ? "whiteAlpha.200" : "blackAlpha.200",
+              }}
+            >
+              <HStack w={"full"}>
+                <PiGearSixFill />
+                <Text fontSize={"sm"}>Settings</Text>
+              </HStack>
+            </MenuItem>
+
+            <MenuItem
+              bgColor={"transparent"}
+              _hover={{
+                bgColor:
+                  colorMode == "dark" ? "whiteAlpha.200" : "blackAlpha.200",
+              }}
+            >
+              <HStack w={"full"}>
+                <HiMiniUserGroup />
+                <Text fontSize={"sm"}>Contacts</Text>
+              </HStack>
+            </MenuItem>
+
+            <MenuItem
+              bgColor={"transparent"}
+              _hover={{
+                bgColor:
+                  colorMode == "dark" ? "whiteAlpha.200" : "blackAlpha.200",
+              }}
+            >
+              <HStack w={"full"}>
+                <BsBugFill />
+                <Text fontSize={"sm"}>Report a Bug</Text>
+              </HStack>
+            </MenuItem>
+
+
           </MenuList>
         </Menu>
         <InputGroup>

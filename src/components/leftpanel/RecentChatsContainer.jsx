@@ -13,13 +13,14 @@ const RecentChatsContainer = () => {
         <Box w={"full"} p={3} rounded={8}>
           <AvatarContainer
             src={"/test/lotusfeet.jpeg"}
-            title={"Krishna's Sukas - Parrot of Sri Krishna"}
+            name={"Krishna's Sukas - Parrot of Sri Krishna"}
             titleSize={"14px"}
-            titleIcons={[<BsVolumeMuteFill />]}
+            titleIcons={[<BsVolumeMuteFill key={'mute'} />]}
             content={"**Master King Xiao Pao:** Happy Krishna Conscious Night"}
             contentColor={colorMode == "dark" ? "#fff" : "gray.500"}
             time={"01:52"}
             badge={"168"}
+            onClick={()=>console.log("Avatar Click")}
           />
         </Box>
         <Box
@@ -31,11 +32,11 @@ const RecentChatsContainer = () => {
         >
           <AvatarContainer
             src={"/logo.jpeg"}
-            title={"ISKCON,Inc. Sanga"}
+            name={"ISKCON,Inc. Sanga"}
             titleSize={"14px"}
             titleIcons={[
-              <HiBadgeCheck size={16} color={"#FFF"} />,
-              <BsVolumeMuteFill color={"#FFF"} />,
+              <HiBadgeCheck size={16} color={"#FFF"} key={'verified'} />,
+              <BsVolumeMuteFill color={"#FFF"} key={'mute'} />,
             ]}
             content={
               "**Raga manjari devi dasi_ACBSP:** Happy Krishna Conscious Night"
@@ -43,6 +44,7 @@ const RecentChatsContainer = () => {
             titleColor={"#fff"}
             contentColor={"#fff"}
             time={"01:52"}
+            onClick={()=>console.log("Avatar Click")}
           />
         </Box>
       </VStack>
