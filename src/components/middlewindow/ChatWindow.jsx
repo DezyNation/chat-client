@@ -1,6 +1,7 @@
 "use client";
 import {
   Box,
+  Container,
   HStack,
   IconButton,
   Input,
@@ -19,6 +20,8 @@ import { BsMicFill } from "react-icons/bs";
 import { IoSend } from "react-icons/io5";
 import { ImAttachment } from "react-icons/im";
 import ResizeTextarea from "react-textarea-autosize";
+import SentMessage from "../misc/chat/SentMessage";
+import ReceivedMessage from "../misc/chat/ReceivedMessage";
 
 const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
   const { colorMode } = useColorMode();
@@ -26,6 +29,8 @@ const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
   const [message, setMessage] = useState("");
 
   const [intent, setIntent] = useState("audio");
+
+  const now = new Date();
 
   useEffect(() => {
     if (message) {
@@ -76,7 +81,24 @@ const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
         </Box>
 
         {/* Chats container */}
-        <Box w={"full"} height={"80%"}></Box>
+        <Box w={"full"} height={"80%"} my={4} overflow={"scroll"}>
+          <Container>
+            <SentMessage
+              name={"Sangam"}
+              message={"Hare Krishna Guru ji🙏🙏🙇"}
+              blueTick={true}
+            />
+            <ReceivedMessage
+              name={"HG Gauranga Sundar Prabhu"}
+              message={"Hare Krishna"}
+            />
+            <SentMessage
+              name={"Sangam"}
+              message={"Guru ji when will I get my name??🙏🙏🙇"}
+              greenTick={true}
+            />
+          </Container>
+        </Box>
 
         <HStack
           position={"absolute"}

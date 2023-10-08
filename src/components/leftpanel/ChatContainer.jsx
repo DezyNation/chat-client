@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
 import AvatarContainer from "../misc/AvatarContainer";
 
@@ -14,24 +14,29 @@ const ChatContainer = ({
   onClick,
 }) => {
   const { colorMode } = useColorMode();
+  const [hovering, setHovering] = useState(false);
+  const hoverColor = !isActive
+    ? colorMode == "light"
+      ? "blackAlpha.100"
+      : "blackAlpha.500"
+    : "auto";
 
   return (
     <>
       <Box
+        pos={"relative"}
         w={"full"}
         p={3}
-        bgColor={isActive ? "yellow.500" : "transparent"}
         transition={"all .1s ease"}
+        bgColor={
+          isActive ? "yellow.500" : hovering ? hoverColor : "transparent"
+        }
         bgGradient={isActive ? "linear(225deg, #FFD93D 0%, orange 0%)" : "none"}
         rounded={8}
-        cursor={"pointer"}
         _hover={{
-          bgColor: !isActive
-          ? colorMode == "light"
-          ? "blackAlpha.100"
-          : "blackAlpha.500"
-          : "auto",
+          bgColor: hoverColor,
         }}
+        cursor={"pointer"}
         onClick={() => onClick()}
       >
         <AvatarContainer

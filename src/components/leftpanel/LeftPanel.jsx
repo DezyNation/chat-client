@@ -1,25 +1,10 @@
 "use client";
-import {
-  Box,
-  HStack,
-  IconButton,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  ScaleFade,
-  Slide,
-  Switch,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import RecentChatsContainer from "../leftpanel/RecentChatsContainer";
-import SearchContainer from "../leftpanel/SearchContainer";
-import TopBar from "../leftpanel/Topbar";
+import { Box, Slide, ScaleFade, useColorMode } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import RecentChatsContainer from "./RecentChatsContainer";
+import SearchContainer from "./SearchContainer";
+import TopBar from "./Topbar";
+import SettingsOverview from "./SettingsOverview";
 
 const LeftPanel = ({}) => {
   const { colorMode } = useColorMode();
@@ -28,32 +13,42 @@ const LeftPanel = ({}) => {
   return (
     <>
       <Box
+        pos={"relative"}
         flex={1}
         borderWidth={"0.5px"}
         borderColor={colorMode == "dark" ? "gray.700" : "gray.200"}
         h={"full"}
       >
-        <TopBar
-          onSearchFocus={() => setIntent("search")}
-          onSearchExit={() => setIntent("chat")}
-          onSettingsClick={() => setIntent("settings")}
-        />
-        <Box pos={"relative"} h={'full'}>
+        <Slide
+          direction="top"
+          style={{ position: "absolute", zIndex: 5 }}
+          in={intent == "chat" || intent == "search"}
+        >
+          <TopBar
+            onSearchFocus={() => setIntent("search")}
+            onSearchExit={() => setIntent("chat")}
+            onSettingsClick={() => setIntent("settings")}
+          />
+        </Slide>
+
+        {intent == "chat" || intent == "search" ? (
+          <Box w={"full"} h={"8vh"}></Box>
+        ) : null}
+
+        {intent == "chat" ? <RecentChatsContainer /> : null}
+
+        <Box maxW={["full", "25vw"]} pos={"relative"} h={"full"} zIndex={0}>
+          <ScaleFade initialScale={0.8} reverse in={intent == "search"}>
+            <SearchContainer />
+          </ScaleFade>
+
           <Slide
             style={{ position: "absolute" }}
             direction="left"
-            in={intent == "chat"}
+            in={intent == "settings"}
           >
-            <RecentChatsContainer />
+            <SettingsOverview onClose={() => setIntent("chat")} />
           </Slide>
-
-          <ScaleFade
-            initialScale={0.8}
-            reverse
-            in={intent == "search"}
-          >
-            <SearchContainer />
-          </ScaleFade>
         </Box>
       </Box>
     </>

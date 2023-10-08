@@ -8,21 +8,27 @@ import ChatContainer from "./ChatContainer";
 
 const RecentChatsContainer = () => {
   const { colorMode } = useColorMode();
+  const members = [0, 8, 9]
   return (
     <>
-      <VStack p={2} w={"full"} h={"full"} overflowY={"scroll"}>
-        <ChatContainer
-          avatar={"/test/lotusfeet.jpeg"}
-          name={"Krishna's Sukas - Parrot of Sri Krishna"}
-          titleIcons={[<BsVolumeMuteFill key={"mute"} />]}
-          content={"**Master King Xiao Pao:** Happy Krishna Conscious Night"}
-          time={"08:52"}
-          badge={12}
-          isActive={false}
-          onClick={() => console.log("Chat Click")}
-        />
+      <Box pos={'relative'} w={"full"} p={2} h={"full"} overflowY={"scroll"}>
+        {
+          members?.map((member, key) => (
+            <ChatContainer
+            key={key}
+              avatar={"/test/lotusfeet.jpeg"}
+              name={"Krishna's Sukas - Parrot of Sri Krishna"}
+              titleIcons={[<BsVolumeMuteFill key={"mute"} />]}
+              content={"**Master King Xiao Pao:** Happy Krishna Conscious Night"}
+              time={"08:52"}
+              badge={12}
+              isActive={false}
+              onClick={() => console.log("Chat Click")}
+            />
+          ))
+        }
         
-        <ChatContainer
+        {/* <ChatContainer
           name={"ISKCON,Inc. Web Development"}
           content={"**Sangam Kumar**: Hare Krishna"}
           time={"08:52"}
@@ -39,10 +45,11 @@ const RecentChatsContainer = () => {
           }
           time={"08:52"}
           badge={12}
-          isActive={true}
+          isActive={false}
           onClick={() => console.log("Chat Click")}
-        />
-      </VStack>
+        /> */}
+
+      </Box>
     </>
   );
 };

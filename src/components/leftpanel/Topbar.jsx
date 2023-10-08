@@ -23,30 +23,29 @@ import { PiGearSixFill } from "react-icons/pi";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-const Topbar = ({ onSearchFocus, onSearchExit, onSettingsClick }) => {
+const Topbar = ({
+  onSearchFocus,
+  onSearchExit,
+  onSettingsClick
+}) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const [searchStatus, setSearchStatus] = useState(false);
-
-  useEffect(() => {
-    if (searchStatus) {
-      onSearchFocus();
-    } else {
-      onSearchExit();
-    }
-  }, [searchStatus]);
+  const [showBackArrow, setShowBackArrow] = useState(false);
 
   return (
     <>
-      <HStack gap={4} p={2}>
-        {searchStatus ? (
+      <HStack gap={4} p={2} pos={'relative'}>
+        {showBackArrow ? (
           <IconButton
             icon={<FaArrowLeftLong />}
             rounded={"full"}
             bgColor={"transparent"}
-            onClick={() => setSearchStatus(false)}
+            onClick={() => {
+              setShowBackArrow(false);
+              onSearchExit();
+            }}
           />
         ) : (
-          <Menu closeOnSelect={false}>
+          <Menu>
             <MenuButton
               as={IconButton}
               icon={<FiMenu />}
@@ -133,7 +132,10 @@ const Topbar = ({ onSearchFocus, onSearchExit, onSettingsClick }) => {
             rounded={"full"}
             border={"none"}
             placeholder="Search"
-            onFocus={() => setSearchStatus(true)}
+            onFocus={() => {
+              setShowBackArrow(true);
+              onSearchFocus();
+            }}
           />
         </InputGroup>
       </HStack>

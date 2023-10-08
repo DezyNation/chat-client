@@ -33,7 +33,7 @@ const AvatarContainer = ({
 
   return (
     <>
-      <HStack w={"full"} gap={2} cursor={"pointer"} onClick={() => onClick()}>
+      <HStack pos={'relative'} cursor={'pointer'} gap={2} onClick={() => onClick()}>
         <Avatar boxSize={avatarSize || "48px"} src={src} name={name} />
         <Box w={"full"}>
           <HStack>

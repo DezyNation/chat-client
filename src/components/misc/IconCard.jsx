@@ -21,9 +21,18 @@ const IconCard = ({
 }) => {
   const { colorMode } = useColorMode();
   const fadedColor = colorMode == "dark" ? "whiteAlpha.700" : "blackAlpha.700";
+
+  const handleClick = (params) => {
+    if (!onClick) {
+      console.log(title, " Clicked!");
+      return;
+    }
+    onClick(params);
+  };
+
   return (
     <>
-      <HStack w={"full"} p={2} cursor={"pointer"} onClick={() => onClick()}>
+      <HStack w={"full"} p={2} cursor={"pointer"} onClick={() => handleClick()}>
         <IconButton icon={icon || <BsInfoCircle />} />
         <Box>
           <Text fontSize={"sm"} fontWeight={"medium"}>
