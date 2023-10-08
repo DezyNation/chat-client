@@ -45,7 +45,7 @@ const ChannelInfo = ({
   function handleTabChange(i) {
     tabRef.current.scrollLeft += (i - currentTab) * 40;
     setCurrentTab(i);
-    onTabChange(i)
+    onTabChange(i);
   }
 
   return (
@@ -73,6 +73,7 @@ const ChannelInfo = ({
               icon={<BsPen />}
               rounded={"full"}
               bgColor={"transparent"}
+              onClick={() => onIntentChange("edit")}
             />
           ) : null} */}
         </HStack>

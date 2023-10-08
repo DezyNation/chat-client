@@ -21,6 +21,7 @@ const RecentChatsContainer = () => {
           isActive={false}
           onClick={() => console.log("Chat Click")}
         />
+        
         <ChatContainer
           name={"ISKCON,Inc. Web Development"}
           content={"**Sangam Kumar**: Hare Krishna"}
@@ -29,6 +30,7 @@ const RecentChatsContainer = () => {
           isActive={false}
           onClick={() => console.log("Chat Click")}
         />
+
         <ChatContainer
           avatar={"/logo.jpeg"}
           name={"ISKCON,Inc. Sanga"}

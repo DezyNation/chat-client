@@ -12,10 +12,7 @@ import ChatWindow from "@/components/middlewindow/ChatWindow";
 import RightPanel from "@/components/rightpanel/RightPanel";
 
 const ChatApp = () => {
-  const { isOpen, onClose, onOpen } = useDisclosure();
-  const [rightPanelStatus, setRightPanelStatus] = useState(false);
-  const [rightPanelIntent, setRightPanelIntent] = useState("profile");
-
+  const [leftPanelIntent, setLeftPanelIntent] = useState("chats")
   const [rightPanel, setRightPanel] = useState({
     status: false,
     intent: null,

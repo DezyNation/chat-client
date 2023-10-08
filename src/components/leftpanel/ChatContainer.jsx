@@ -24,14 +24,14 @@ const ChatContainer = ({
         transition={"all .1s ease"}
         bgGradient={isActive ? "linear(225deg, #FFD93D 0%, orange 0%)" : "none"}
         rounded={8}
+        cursor={"pointer"}
         _hover={{
           bgColor: !isActive
-            ? colorMode == "light"
-              ? "blackAlpha.100"
-              : "blackAlpha.500"
-            : "auto",
+          ? colorMode == "light"
+          ? "blackAlpha.100"
+          : "blackAlpha.500"
+          : "auto",
         }}
-        cursor={"pointer"}
         onClick={() => onClick()}
       >
         <AvatarContainer
