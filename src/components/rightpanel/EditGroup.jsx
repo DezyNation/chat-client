@@ -154,7 +154,7 @@ const EditGroup = ({ onClose }) => {
         </VStack>
         <Box w={"full"} h={"24"}></Box>
         <HStack p={"4"} justifyContent={"center"}>
-          <Button bgColor={"red.500"} w={"full"} leftIcon={<BsTrashFill />}>
+          <Button colorScheme="red" bgColor={"red.500"} w={"full"} leftIcon={<BsTrashFill />}>
             Delete and Leave Group
           </Button>
         </HStack>

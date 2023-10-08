@@ -9,13 +9,18 @@ import {
 } from "@chakra-ui/react";
 import ChannelInfo from "./ChannelInfo";
 import EditGroup from "./EditGroup";
+import SearchMessages from "./SearchMessages";
 import { BsPersonPlusFill } from "react-icons/bs";
 
 const RightPanel = ({ status, onClose, intent }) => {
   const { colorMode } = useColorMode();
-  const [currentPanel, setCurrentPanel] = useState(intent || "profile");
+  const [currentPanel, setCurrentPanel] = useState(intent);
 
   const [currentTab, setCurrentTab] = useState(0);
+
+  useEffect(()=>{
+    setCurrentPanel(intent)
+  },[intent])
 
   return (
     <>
@@ -27,13 +32,13 @@ const RightPanel = ({ status, onClose, intent }) => {
         borderWidth={"0.5px"}
         borderColor={colorMode == "dark" ? "gray.700" : "gray.200"}
       >
+
         <Slide
           direction="right"
           style={{ position: "absolute", width: "100%" }}
-          in={currentPanel === "profile"}
+          in={currentPanel == "profile"}
         >
           <ChannelInfo
-            fabStatus={currentPanel === "profile"}
             onClose={() => {
               onClose();
             }}
@@ -45,9 +50,21 @@ const RightPanel = ({ status, onClose, intent }) => {
         <Slide
           direction="right"
           style={{ position: "absolute", width: "100%" }}
-          in={currentPanel === "edit"}
+          in={currentPanel == "edit"}
         >
           <EditGroup
+            onClose={() => {
+              setCurrentPanel("profile");
+            }}
+          />
+        </Slide>
+
+        <Slide
+          direction="right"
+          style={{ position: "absolute", width: "100%" }}
+          in={currentPanel == "search"}
+        >
+          <SearchMessages
             onClose={() => {
               setCurrentPanel("profile");
             }}

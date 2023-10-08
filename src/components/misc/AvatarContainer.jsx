@@ -22,7 +22,7 @@ const AvatarContainer = ({
   time,
   badge,
   badgeColor,
-  onClick
+  onClick,
 }) => {
   const { colorMode } = useColorMode();
   const [isClient, setIsClient] = useState(false);
@@ -33,7 +33,7 @@ const AvatarContainer = ({
 
   return (
     <>
-      <HStack w={'full'} gap={2} cursor={"pointer"} onClick={()=>onClick()}>
+      <HStack w={"full"} gap={2} cursor={"pointer"} onClick={() => onClick()}>
         <Avatar boxSize={avatarSize || "48px"} src={src} name={name} />
         <Box w={"full"}>
           <HStack>
@@ -55,12 +55,10 @@ const AvatarContainer = ({
             whiteSpace="nowrap" // this is not working for some reason...
             textOverflow={"ellipsis"}
           >
-            {isClient ? (
-              <Text isTruncated noOfLines={1}>
-                <Markdown>{content}</Markdown>
-                {content?.length > 20 ? "..." : ""}
-              </Text>
-            ) : null}
+            <HStack gap={0}>
+              <Markdown>{content}</Markdown>
+              <Text fontSize={'xs'}>{content?.length > 20 ? "..." : ""}</Text>
+            </HStack>
           </Box>
         </Box>
         <VStack gap={1} h={"8"} justifyContent={"flex-start"}>

@@ -20,7 +20,7 @@ import { IoSend } from "react-icons/io5";
 import { ImAttachment } from "react-icons/im";
 import ResizeTextarea from "react-textarea-autosize";
 
-const ChatWindow = ({ onAvatarClick }) => {
+const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
   const { colorMode } = useColorMode();
   const [emojiPickerStatus, setEmojiPickerStatus] = useState(false);
   const [message, setMessage] = useState("");
@@ -69,8 +69,8 @@ const ChatWindow = ({ onAvatarClick }) => {
             <Spacer />
             <PinnedChats />
             <NavbarIconsGroup
-              onSearchClick={() => console.log("Search")}
-              onPinClick={() => console.log("Pin")}
+              onSearchClick={() => onSearchClick()}
+              onPinClick={() => onPinClick()}
             />
           </HStack>
         </Box>
