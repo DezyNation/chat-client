@@ -1,6 +1,13 @@
 "use client";
 import React from "react";
-import { Avatar, Box, HStack, Icon, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  HStack,
+  Icon,
+  Text,
+  useColorMode,
+} from "@chakra-ui/react";
 import { BsCheckCircle, BsCheckCircleFill } from "react-icons/bs";
 
 const SentMessage = ({
@@ -11,6 +18,7 @@ const SentMessage = ({
   blueTick,
   greenTick,
 }) => {
+  const { colorMode } = useColorMode();
   return (
     <>
       <HStack w={"full"} alignItems={"flex-start"} justifyContent={"flex-end"}>
@@ -21,14 +29,26 @@ const SentMessage = ({
           alignItems={"flex-end"}
           justifyContent={"flex-start"}
         >
-          <Box p={2} maxW={"70%"} bg={"#FF8400"} rounded={12} roundedBottomRight={0}>
+          <Box
+            p={2}
+            maxW={"70%"}
+            bg={colorMode == "dark" ? "#FF8400" : "#333"}
+            rounded={12}
+            roundedBottomRight={0}
+          >
             <Text fontSize={"xs"} color={"#FFF"}>
               {message}
             </Text>
           </Box>
-          <HStack>
-            <Text p={2} fontSize={"8"}>
-              {new Date(timestamp || null).toLocaleTimeString()}{" "}
+          <HStack
+            mt={1}
+            px={2}
+            py={1}
+            bgColor={colorMode == "light" ? "whiteAlpha.800" : "transparent"}
+            rounded={"full"}
+          >
+            <Text fontSize={"8"}>
+              {timestamp}
             </Text>
             {greenTick ? (
               <Icon
@@ -40,7 +60,7 @@ const SentMessage = ({
               <Icon
                 color={"twitter.500"}
                 fontSize={"12px"}
-                as={BsCheckCircle}
+                as={BsCheckCircleFill}
               />
             ) : null}
           </HStack>

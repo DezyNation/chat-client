@@ -87,15 +87,18 @@ const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
               name={"Sangam"}
               message={"Hare Krishna Guru ji🙏🙏🙇"}
               blueTick={true}
+              timestamp={now?.toLocaleTimeString()}
             />
             <ReceivedMessage
               name={"HG Gauranga Sundar Prabhu"}
               message={"Hare Krishna"}
+              timestamp={now?.toLocaleTimeString()}
             />
             <SentMessage
               name={"Sangam"}
               message={"Guru ji when will I get my name??🙏🙏🙇"}
               greenTick={true}
+              timestamp={now?.toLocaleTimeString()}
             />
           </Container>
         </Box>

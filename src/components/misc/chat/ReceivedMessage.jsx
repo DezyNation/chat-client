@@ -32,7 +32,7 @@ const ReceivedMessage = ({ message, name, avatar, timestamp }) => {
           </Box>
           <HStack>
             <Text p={2} fontSize={"8"}>
-              {new Date(timestamp || null).toLocaleTimeString()}{" "}
+              {timestamp}
             </Text>
           </HStack>
         </Box>
