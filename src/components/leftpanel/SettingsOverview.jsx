@@ -76,7 +76,7 @@ const SettingsOverview = ({ onClose }) => {
             <FormLabel fontSize={"xs"}>Display Name</FormLabel>
             <Input
               variant={"flushed"}
-              placeholder="Enter Group Name"
+              placeholder="Enter Your Name"
               name="name"
               value={Formik.values.name}
               onChange={Formik.handleChange}

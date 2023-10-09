@@ -10,6 +10,7 @@ import {
 import ChannelInfo from "./ChannelInfo";
 import EditGroup from "./EditGroup";
 import SearchMessages from "./SearchMessages";
+import AddMembers from "./AddMembers";
 import { BsPersonPlusFill } from "react-icons/bs";
 
 const RightPanel = ({ status, onClose, intent }) => {
@@ -65,6 +66,18 @@ const RightPanel = ({ status, onClose, intent }) => {
           in={currentPanel == "search"}
         >
           <SearchMessages
+            onClose={() => {
+              setCurrentPanel("profile");
+            }}
+          />
+        </Slide>
+
+        <Slide
+          direction="right"
+          style={{ position: "absolute", width: "100%" }}
+          in={currentPanel == "addMembers"}
+        >
+          <AddMembers
             onClose={() => {
               setCurrentPanel("profile");
             }}

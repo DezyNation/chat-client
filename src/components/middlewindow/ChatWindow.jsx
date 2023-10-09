@@ -22,6 +22,7 @@ import { ImAttachment } from "react-icons/im";
 import ResizeTextarea from "react-textarea-autosize";
 import SentMessage from "../misc/chat/SentMessage";
 import ReceivedMessage from "../misc/chat/ReceivedMessage";
+import timeformat from '../../utils/timeformat'
 
 const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
   const { colorMode } = useColorMode();
@@ -30,7 +31,7 @@ const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
 
   const [intent, setIntent] = useState("audio");
 
-  const now = new Date();
+  const now = new Date('August 19, 2023 1:15');
 
   useEffect(() => {
     if (message) {
@@ -87,18 +88,18 @@ const ChatWindow = ({ onAvatarClick, onSearchClick, onPinClick }) => {
               name={"Sangam"}
               message={"Hare Krishna Guru ji🙏🙏🙇"}
               blueTick={true}
-              timestamp={now?.toLocaleTimeString()}
+              timestamp={now.toLocaleTimeString(undefined , timeformat)}
             />
             <ReceivedMessage
               name={"HG Gauranga Sundar Prabhu"}
               message={"Hare Krishna"}
-              timestamp={now?.toLocaleTimeString()}
+              timestamp={now.toLocaleTimeString(undefined , timeformat)}
             />
             <SentMessage
               name={"Sangam"}
               message={"Guru ji when will I get my name??🙏🙏🙇"}
               greenTick={true}
-              timestamp={now?.toLocaleTimeString()}
+              timestamp={now?.toLocaleTimeString(undefined , timeformat)}
             />
           </Container>
         </Box>

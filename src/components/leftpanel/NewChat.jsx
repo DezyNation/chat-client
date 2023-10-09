@@ -7,13 +7,17 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Text,
+  VStack,
   useColorMode,
 } from "@chakra-ui/react";
-import { BiSearch } from "react-icons/bi";
 import { BsArrowLeft } from "react-icons/bs";
+import { BiSearch } from "react-icons/bi";
+import AvatarContainer from "../misc/AvatarContainer";
 
-const SearchMessages = ({ onClose }) => {
+const NewChat = ({ onClose }) => {
   const { colorMode } = useColorMode();
+  const hoverColor = colorMode == "light" ? "blackAlpha.100" : "blackAlpha.500";
   return (
     <>
       <Box pos={"relative"} w={"full"} h={"100vh"} overflowY={"scroll"}>
@@ -24,7 +28,11 @@ const SearchMessages = ({ onClose }) => {
             bgColor={"transparent"}
             onClick={() => onClose()}
           />
-
+          <Text fontWeight={"semibold"} fontSize={"lg"}>
+            Start Conversation
+          </Text>
+        </HStack>
+        <Box p={2}>
           <InputGroup>
             <InputLeftElement children={<BiSearch />} />
             <Input
@@ -35,13 +43,21 @@ const SearchMessages = ({ onClose }) => {
               }
               rounded={"full"}
               border={"none"}
-              placeholder="Search Messages"
+              placeholder="Search Users"
             />
           </InputGroup>
-        </HStack>
+        </Box>
+        <VStack w={"full"} p={4} gap={4}>
+          <Box w={"full"} rounded={12} _hover={{bgColor: hoverColor}}>
+            <AvatarContainer name={"Sangam Kumar"} content={"Bio"} />
+          </Box>
+          <Box w={"full"} rounded={12} _hover={{bgColor: hoverColor}}>
+            <AvatarContainer name={"Subal Das"} content={"Bio"} />
+          </Box>
+        </VStack>
       </Box>
     </>
   );
 };
 
-export default SearchMessages;
+export default NewChat;
