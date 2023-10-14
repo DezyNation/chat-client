@@ -4,9 +4,8 @@ import { API_BASE_URL } from "@/constants";
 import axios from "axios";
 
 // Create a new Axios instance
-const userAxiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+const localAxiosInstance = axios.create({
   withCredentials: true
 });
 
-export default userAxiosInstance;
+export default localAxiosInstance;
