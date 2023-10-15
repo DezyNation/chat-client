@@ -1,34 +1,40 @@
 "use client";
-
 import { useToast } from "@chakra-ui/react";
 import useAuth from "./useAuth";
 
+type ToastStatus = "info" | "success" | "warning" | "error";
+
+type ToastData = {
+  status?: ToastStatus;
+  title?: string;
+  description: string;
+};
+
 const useApiHandler = () => {
-  const { logout } = useAuth();
   const Toast = useToast();
 
   const handleError = (error: any, title?: string) => {
-    if (error?.response?.status == 401) {
-      Toast({
-        status: "warning",
-        title: "Your session expired!",
-        description: "Please login again",
-      });
-      logout();
-      return;
-    }
     Toast({
       status: "error",
       ...(title && { title: title }),
       description:
-        error?.response?.data?.error?.message ||
-        error?.response?.data?.message ||
+        error?.response?.data?.type ||
+        error?.response?.data?.error?.reason ||
         error?.message,
+    });
+  };
+
+  const showToast = ({ status = "info", title, description }: ToastData) => {
+    Toast({
+      status: status || "info",
+      ...(title && { title: title }),
+      description: description,
     });
   };
 
   return {
     handleError,
+    showToast,
   };
 };
 

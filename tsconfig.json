@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/misc/AvatarContainer.jsx", "src/api/dm/fetchDMChannels", "src/api/auth/logout"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/misc/AvatarContainer.jsx", "src/app/api/dm/fetchDMChannels", "src/app/api/auth/logout"],
   "exclude": ["node_modules"]
 }

@@ -6,7 +6,7 @@ import useApiHandler from "./useApiHandler";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
-  const { handleError } = useApiHandler();
+  const {handleError} = useApiHandler();
 
   const register = async (userData: any) => {
     try {
@@ -17,10 +17,12 @@ const useAuth = () => {
       );
 
       // Update the user state with the response data
-      setUser(response.data);
+      return response
     } catch (error) {
       // Handle registration errors and set the error state
-      handleError(error, "Error while registration");
+      console.log(error);
+      handleError(error, "Error while signup")
+      throw new Error(error);
     }
   };
 
@@ -33,10 +35,12 @@ const useAuth = () => {
       );
 
       // Update the user state with the response data
-      setUser(response.data);
+      return response
     } catch (error) {
-      // Handle login errors and set the error state
-      handleError(error, "Error while login");
+      // Handle registration errors and set the error state
+      console.log(error);
+      handleError(error, "Error while login")
+      throw new Error(error)
     }
   };
 
@@ -46,10 +50,10 @@ const useAuth = () => {
       await localAxiosInstance.post(`/api/auth/logout`);
 
       // Clear the user state to indicate that the user is logged out
-      setUser(null);
+      return true
     } catch (error) {
-      // Handle logout errors and set the error state
-      handleError(error, "Error while logout");
+      // Handle registration errors and set the error state
+      throw new Error(error);
     }
   };
 
