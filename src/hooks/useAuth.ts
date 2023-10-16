@@ -3,10 +3,12 @@ import { useState } from "react";
 import localAxiosInstance from "@/utils/localAxiosInstance";
 import { AUTH_RANDOM_STRING } from "@/constants";
 import useApiHandler from "./useApiHandler";
+import userAxiosInstance from "@/utils/userAxiosInstance";
+import { destroyCookie } from "nookies";
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
-  const {handleError} = useApiHandler();
+  const { handleError } = useApiHandler();
 
   const register = async (userData: any) => {
     try {
@@ -17,11 +19,11 @@ const useAuth = () => {
       );
 
       // Update the user state with the response data
-      return response
+      return response;
     } catch (error) {
       // Handle registration errors and set the error state
       console.log(error);
-      handleError(error, "Error while signup")
+      handleError(error, "Error while signup");
       throw new Error(error);
     }
   };
@@ -35,12 +37,12 @@ const useAuth = () => {
       );
 
       // Update the user state with the response data
-      return response
+      return response;
     } catch (error) {
       // Handle registration errors and set the error state
       console.log(error);
-      handleError(error, "Error while login")
-      throw new Error(error)
+      handleError(error, "Error while login");
+      throw new Error(error);
     }
   };
 
@@ -48,12 +50,11 @@ const useAuth = () => {
     try {
       // Make a POST request to log out the user
       await localAxiosInstance.post(`/api/auth/logout`);
-
-      // Clear the user state to indicate that the user is logged out
-      return true
     } catch (error) {
       // Handle registration errors and set the error state
-      throw new Error(error);
+      console.log(error)
+    } finally {
+      window.location.replace("/login");
     }
   };
 

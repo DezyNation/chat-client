@@ -12,7 +12,7 @@ import ChatWindow from "@/components/middlewindow/ChatWindow";
 import RightPanel from "@/components/rightpanel/RightPanel";
 
 const ChatApp = () => {
-  const [leftPanelIntent, setLeftPanelIntent] = useState("chats")
+  const [leftPanelIntent, setLeftPanelIntent] = useState("chats");
   const [rightPanel, setRightPanel] = useState({
     status: false,
     intent: null,

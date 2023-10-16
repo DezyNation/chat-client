@@ -1,6 +1,7 @@
 "use client";
 import useApiHandler from "@/hooks/useApiHandler";
 import useAuth from "@/hooks/useAuth";
+import userAxiosInstance from "@/utils/userAxiosInstance";
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { BsEye, BsEyeSlash, BsMoonStarsFill, BsSunFill } from "react-icons/bs";
 
@@ -24,6 +26,7 @@ const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const { push } = useRouter();
   const { handleError, showToast } = useApiHandler();
   const { colorMode, toggleColorMode } = useColorMode();
   const { login, user } = useAuth();
@@ -45,9 +48,7 @@ const Login = () => {
         setLoading(true);
         const res = await login(values);
         if (res?.data?.token) {
-          console.log("Login Response");
-          console.log(res?.data);
-          setLoading(false);
+          push("/v1/app");
           return;
         }
       } catch (err) {

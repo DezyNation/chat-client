@@ -20,12 +20,20 @@ import { FaUserAltSlash, FaUserTimes } from "react-icons/fa";
 import { IoCameraOutline } from "react-icons/io5";
 import ResizeTextarea from "react-textarea-autosize";
 import IconCard from "../misc/IconCard";
-import { LuLink } from "react-icons/lu";
-import { BsBell, BsBellSlash, BsShieldFill, BsTrashFill } from "react-icons/bs";
+import {
+  BsBell,
+  BsBellSlash,
+  BsPower,
+  BsShieldFill,
+  BsTrashFill,
+} from "react-icons/bs";
 import { SiMaildotru } from "react-icons/si";
+import useAuth from "@/hooks/useAuth";
 
 const SettingsOverview = ({ onClose }) => {
   const { colorMode } = useColorMode();
+  const { logout } = useAuth();
+
   const Formik = useFormik({
     initialValues: {
       name: "ISKCON,Inc. Sanga",
@@ -36,6 +44,7 @@ const SettingsOverview = ({ onClose }) => {
       notifications: true,
     },
   });
+
   return (
     <>
       <Box pos={"relative"} w={"full"} h={"100vh"} overflowY={"scroll"}>
@@ -158,7 +167,16 @@ const SettingsOverview = ({ onClose }) => {
           />
         </VStack>
         <Box w={"full"} h={"24"}></Box>
-        <HStack p={"4"} justifyContent={"center"}>
+        <VStack p={"4"} justifyContent={"center"} gap={6}>
+          <Button
+            colorScheme="red"
+            w={"full"}
+            variant={"ghost"}
+            leftIcon={<BsPower />}
+            onClick={logout}
+          >
+            Logout
+          </Button>
           <Button
             colorScheme="red"
             bgColor={"red.500"}
@@ -167,7 +185,7 @@ const SettingsOverview = ({ onClose }) => {
           >
             Delete Account
           </Button>
-        </HStack>
+        </VStack>
       </Box>
     </>
   );

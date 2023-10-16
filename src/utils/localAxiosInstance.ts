@@ -5,7 +5,7 @@ import axios from "axios";
 
 // Create a new Axios instance
 const localAxiosInstance = axios.create({
-  withCredentials: true
+  withCredentials: false
 });
 
 export default localAxiosInstance;
